@@ -1,148 +1,48 @@
-import React from "react"
-import { Facebook, Instagram, Linkedin } from "react-bootstrap-icons"
-import { Link } from "gatsby"
+import React from "react";
+import Image from "../Images/Images";
 
 const Footer = () => {
   return (
-    <section className="bg-dark">
-      <footer className="container py-5">
-        <div className="row">
-          <div className="col-2">
-            <h5 className="text-primary">Section</h5>
-            <ul className="nav flex-column">
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Features
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Pricing
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  FAQs
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
+    <footer class="container py-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-muted">
+          &copy; 2022 Banasthali Vidyapith, BTech EE Project.
+        </p>
 
-          <div className="col-2">
-            <h5 className="text-primary">Section</h5>
-            <ul className="nav flex-column">
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Features
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Pricing
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  FAQs
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
+        <a
+          href="/"
+          class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <Image
+            style={{
+              height: "50px",
+              width: "50px",
+            }}
+            filename="bvlogo.jpg"
+            alt="1"
+          />
+        </a>
 
-          <div className="col-2">
-            <h5 className="text-primary">Section</h5>
-            <ul className="nav flex-column">
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Features
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  Pricing
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  FAQs
-                </a>
-              </li>
-              <li className="nav-item mb-2">
-                <a href="/" className="nav-link p-0 text-muted">
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
+        <ul class="nav col-md-4 justify-content-end">
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">
+              HOME
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">
+              ABOUT
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-muted">
+              CONTACT
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+  );
+};
 
-          <div className="col-4 offset-1">
-            <form>
-              <h5 className="text-primary">Subscribe to our newsletter</h5>
-              <p className="text-light">
-                Monthly digest of whats new and exciting from us.
-              </p>
-              <div className="d-flex w-100 gap-2">
-                <label for="newsletter1" className="visually-hidden">
-                  Email address
-                </label>
-                <input
-                  id="newsletter1"
-                  type="text"
-                  className="form-control shadow"
-                  placeholder="Email address"
-                />
-                <button className="btn btn-primary shadow" type="button">
-                  Subscribe
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div className="d-flex text-light justify-content-between py-4 my-4 border-top">
-          <p>&copy; 2021 Company, Inc. All rights reserved.</p>
-          <span>
-            <ul className="list-unstyled justify-content-center d-flex mb-0">
-              <Link className="ms-3" to="">
-                <Facebook size="30" />
-              </Link>
-              <Link className="ms-3" to="">
-                <Instagram size="30" />
-              </Link>
-              <Link className="ms-3" to="">
-                <Linkedin size="30" />
-              </Link>
-            </ul>
-          </span>
-        </div>
-      </footer>
-    </section>
-  )
-}
-
-export default Footer
+export default Footer;
