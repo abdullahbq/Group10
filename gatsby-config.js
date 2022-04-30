@@ -19,6 +19,22 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/shop`,
+        name: `shop`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-snipcart",
+      options: {
+        //replace with own Snipcart API key
+        apiKey:
+          "NmNkZDk5MDEtYjEyZC00ZmY2LWE4NjEtYWRjYmE4YjBkYTNlNjM3ODUzNzM1Njc0NDQyMjgz",
+        autopop: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],

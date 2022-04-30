@@ -1,6 +1,8 @@
-import React from "react";
-import Layout from "../components/Layout/Layout";
-import Image from "../components/Images/Images";
+import React from "react"
+import Layout from "../components/Layout/Layout"
+import { ArrowLeft, Cart } from "react-bootstrap-icons"
+import Image from "../components/Images/Images"
+import { Link } from "gatsby"
 
 const Items = [
   {
@@ -440,17 +442,33 @@ const Items = [
     name: "Dahi (Extra)",
     price: "₹10",
   },
-];
+]
 
-export default function annapurna() {
+export default function Annapurna() {
   return (
     <Layout>
       <div className="container text-center py-3">
-        <h2 className="pb-2 border-bottom text-center">Annapurna Menu</h2>
+        <button type="button" class="btn backbutton float-start">
+          <Link to="/foodcorner">
+            <ArrowLeft className="mx-auto" size="30" />
+            <b> BACK</b>
+          </Link>
+        </button>
+        <h2 className="pb-2 border-bottom text-center text-light">
+          Annapurna Menu
+        </h2>
+        &nbsp;
+        <button type="button" class="py-2 btn button12 text-center">
+          <Link to="/shop">
+            <Cart className="mx-auto" size="30" /> <b>SAMPLE SHOP</b>
+          </Link>
+        </button>
+        &nbsp;
         <div className="row justify content center">
           {Items.map((item, i) => {
             return (
               <div key={i} className="col-lg-3 col-md-6 col-sm-12 ">
+                &nbsp;
                 <div className="card card-body shadow mb-3">
                   <Image
                     className="d-block mx-lg-auto img-fluid"
@@ -470,10 +488,10 @@ export default function annapurna() {
                   </button>
                 </div>
               </div>
-            );
+            )
           })}
         </div>
       </div>
     </Layout>
-  );
+  )
 }

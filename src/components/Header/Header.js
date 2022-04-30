@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "gatsby"; //to avoid refreshing on each click
+import React from "react"
+import { Link } from "gatsby" //to avoid refreshing on each click
 import {
   House,
   Person,
@@ -7,51 +7,97 @@ import {
   CupStraw,
   Basket3,
   Pen,
+  Cart,
   FileMedical,
-} from "react-bootstrap-icons";
+  Shop,
+} from "react-bootstrap-icons"
 
-const Header = () => {
-  return (
-    <div>
-      <h1 className="back1 display-5 fw-bold lh-1 py-5 m-0 text-center" fill="">
-        Banasthali Web Shop
-      </h1>
+class Header extends React.Component {
+  state = {
+    items: 0,
+  }
 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <div class="navbar-brand"></div>
+  updateItemTotal = qty => {
+    this.setState({ items: qty })
+  }
+
+  componentDidMount() {
+    if (window.Snipcart) {
+      //this allows it to work when switching pages
+      var count = window.Snipcart.api.items.count()
+      this.updateItemTotal(count)
+
+      //this allows it to work when you add or change items
+      window.Snipcart.subscribe("cart.closed", () => {
+        var count = window.Snipcart.api.items.count()
+        this.updateItemTotal(count)
+      })
+
+      //this allows it to work on refreshing the page
+      window.Snipcart.subscribe("cart.ready", data => {
+        var count = window.Snipcart.api.items.count()
+        this.updateItemTotal(count)
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    window.Snipcart.unsubscribe("cart.closed")
+    window.Snipcart.unsubscribe("cart.ready")
+  }
+
+  render() {
+    return (
+      <nav
+        className="navbar navbar-expand-lg navbar header1 py-3 mx-auto justify-content-center"
+        aria-label="Fifth navbar example"
+      >
+        <div className="container-fluid">
+          {/* <a className="navbar-brand" href="/">
+            PROJECT 2022
+          </a> */}
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
+            data-bs-target="#navbarsExample05"
+            aria-controls="navbarsExample05"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
+
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <div class="d-grid gap-2 d-md-flex justify-content-md-end mx-auto me-1">
+              <div class="d-grid gap-2 d-md-flex justify-content-center mx-auto me-2">
                 <Link to="/">
-                  <button type="button" class="btn btn-secondary">
-                    Home
-                    <House className="mx-auto" size="30" fill="#ffff" />
+                  <button type="button" class="btn button11">
+                    <House className="mx-auto" size="30" />
+                    <b>Home</b>
                   </button>
                 </Link>
               </div>
 
-              <div class="btn-group mx-auto me-1">
-                <button type="button" class="btn btn-secondary">
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end me-2">
+                <Link to="/shop">
+                  <button type="button" class="btn button10">
+                    <Shop className="mx-auto" size="30" />
+                    <b>Sample Shop</b>
+                  </button>
+                </Link>
+              </div>
+
+              <div class="btn-group mx-auto me-2">
+                <button type="button" class="btn button6">
                   <Link to="/foodcorner">
-                    Food Corner
-                    <CupStraw className="mx-auto" size="30" fill="#ffff" />
+                    <CupStraw className="mx-auto" size="30" />
+                    <b>Food Corner</b>
                   </Link>
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                  class="btn button7 dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -81,16 +127,16 @@ const Header = () => {
                 </ul>
               </div>
 
-              <div class="btn-group mx-auto me-1">
-                <button type="button" class="btn btn-secondary">
+              <div class="btn-group mx-auto me-2">
+                <button type="button" class="btn button8">
                   <Link to="/grocery">
-                    Grocery
-                    <Basket3 className="mx-auto" size="30" fill="#ffff" />
+                    <Basket3 className="mx-auto" size="30" />
+                    <b>Grocery</b>
                   </Link>
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                  class="btn button9 dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -107,11 +153,11 @@ const Header = () => {
                       <Link to="/shreeshakti">Shree Shakti General Store</Link>
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a class="dropdown-item">
                       <Link to="/rohit">Rohit Greens And Juice Point</Link>
                     </a>
-                  </li>
+                  </li> */}
                   <li>
                     <a class="dropdown-item">
                       <Link to="/mukteshwarinewmarket">
@@ -122,16 +168,16 @@ const Header = () => {
                 </ul>
               </div>
 
-              <div class="btn-group mx-auto me-1">
-                <button type="button" class="btn btn-secondary">
-                  <Link to="/stationary">
-                    Stationary
-                    <Pen className="mx-auto" size="30" fill="#ffff" />
+              <div class="btn-group mx-auto me-2">
+                <button type="button" class="btn button4">
+                  <Link to="/station">
+                    <Pen className="mx-auto" size="30" />
+                    <b>Stationery</b>
                   </Link>
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                  class="btn button5 dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -145,22 +191,22 @@ const Header = () => {
                   </li>
                   <li>
                     <a class="dropdown-item">
-                      <Link to="/dks">D. K. Stationary</Link>
+                      <Link to="/dks">D.K. Stationery</Link>
                     </a>
                   </li>
                 </ul>
               </div>
 
-              <div class="btn-group mx-auto me-1">
-                <button type="button" class="btn btn-secondary">
+              <div class="btn-group mx-auto me-2">
+                <button class="btn button2">
                   <Link to="/pharmacy">
-                    Pharmacy
-                    <FileMedical className="mx-auto" size="30" fill="#ffff" />
+                    <FileMedical className="mx-auto" size="30" />
+                    <b>Pharmacy</b>
                   </Link>
                 </button>
                 <button
                   type="button"
-                  class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                  class="btn button3 dropdown-toggle dropdown-toggle-split"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -180,42 +226,33 @@ const Header = () => {
                 </ul>
               </div>
 
-              {/* <li class="btn text-light text-decoration-none">
-                <Link class="text-warning text-decoration-none" to="/blog">
-                  Blog
-                </Link>
-              </li>{" "} */}
+              <div class="d-grid gap-2 d-md-flex justify-content me-2 float-end">
+                <div className="d-grid gap-2 d-md-flex justify-content-center mx-auto me-2">
+                  <Link to="/signup">
+                    <button className="btn button1">
+                      <Person size="30" />
+                      <b>My Account</b>
+                    </button>
+                  </Link>
+                </div>
+              </div>
             </ul>
-            {/* <form class="d-flex">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Search Products"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form> */}
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end me-1">
-              <Link to="/signup">
-                <button type="button" class="btn btn-secondary">
-                  My Account{" "}
-                  <Person className="mx-auto" size="30" fill="#ffff" />
-                </button>
-              </Link>
-            </div>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button type="button" class="btn btn-secondary">
-                CART <Basket className="mx-auto" size="30" fill="#ffff" />
+            <div className="snipcart-summary">
+              <button className="btn btn-disabled snipcart-checkout">
+                {" "}
+                <Cart fill="#ffff" size="30" />
               </button>
+
+              <strong className="badge bg-light text-dark">
+                {this.state.items}
+              </strong>
             </div>
           </div>
         </div>
       </nav>
-    </div>
-  );
-};
+    )
+  }
+}
 
-export default Header;
+export default Header

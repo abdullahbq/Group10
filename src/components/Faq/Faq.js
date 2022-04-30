@@ -1,105 +1,59 @@
-import React from "react";
+import React from "react"
+import Accordion from "../Accordion/Accordion"
 
-const Faq = () => {
+const Item = [
+  {
+    title: "How can I pay for my order?",
+    content: ` For now, there is only one way of online payment. You will have to
+    scan a QR code at checkout, and pay the amount via that. Cash on
+    delivery is available for takeaway orders.[Note: - more payment
+    gateways will be added in future.]`,
+  },
+  {
+    title: "Is there an option for takeaway?",
+    content: `Yes, there are in total two options available. You can either opt
+    for delivery, in which case the item(s) will be delivered at your
+    hostel's channel gate, or you can select the option for takeaway,
+    and in this case, your order will be kept aside to be picked up.`,
+  },
+  {
+    title: " Is cash on delivery available for takeaway items?",
+    content: `You can either pay online or you can pay the retailer yourself
+    when you come to pick up your order.`,
+  },
+  {
+    title: " What if I receive a damaged item?",
+    content: `If you recieve any damaged product, then you will have to contact
+    the retailer that sold that product and notify them about it. They
+    will send someone to replace your product.`,
+  },
+  {
+    title: " Is there any cancellation option?",
+    content: `For now, the only way to cancel your order is to contact the said
+    retailer from the contact number provided at the website, and
+    notify them about your decision. Later, a cancellation option will
+    be added to the order page.`,
+  },
+  {
+    title: " Can I order something to be delivered at a specific time?",
+    content: `This is not be possible yet. You will have to contact the retailer
+    yourself to make changes in the timing of delivery.`,
+  },
+]
+
+const FAQ = () => {
   return (
     <div className="container py-5">
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button
-              class="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              Accordion Item #1
-            </button>
-          </h2>
-          <div
-            id="collapseOne"
-            class="accordion-collapse collapse show"
-            aria-labelledby="headingOne"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <strong>This is the first item's accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-              aria-expanded="false"
-              aria-controls="collapseTwo"
-            >
-              Accordion Item #2
-            </button>
-          </h2>
-          <div
-            id="collapseTwo"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingTwo"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <strong>This is the second item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button
-              class="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseThree"
-              aria-expanded="false"
-              aria-controls="collapseThree"
-            >
-              Accordion Item #3
-            </button>
-          </h2>
-          <div
-            id="collapseThree"
-            class="accordion-collapse collapse"
-            aria-labelledby="headingThree"
-            data-bs-parent="#accordionExample"
-          >
-            <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
+      <h2 className="fat-text pb-2 border-bottom text-center text-light">
+        FAQ
+      </h2>
+      <div className="row justify-content-center py-5">
+        {Item.map(({ title, content }) => (
+          <Accordion title={title} content={content} />
+        ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Faq;
+export default FAQ

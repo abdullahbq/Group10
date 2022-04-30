@@ -4,7 +4,8 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const blogPost = path.resolve(`./src/templates/blog-post-template.js`)
+  const blogPostTemplate = path.resolve(`./src/templates/blog-post-template.js`)
+  const shopItemTemplate = path.resolve(`./src/templates/shop-item-template.js`)
   return graphql(
     `
       {
@@ -14,8 +15,8 @@ exports.createPages = ({ graphql, actions }) => {
         ) {
           edges {
             node {
-              id
               fields {
+                collection
                 slug
               }
               frontmatter {
@@ -31,16 +32,36 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    // Create blog posts pages.
-    const posts = result.data.allMdx.edges
+    const allPosts = result.data.allMdx.edges
+    const blogPosts = allPosts.filter(
+      edge => edge.node.fields.collection === `blog`
+    )
+    const shopItems = allPosts.filter(
+      edge => edge.node.fields.collection === `shop`
+    )
 
-    posts.forEach((post, index, arr) => {
+    blogPosts.forEach((post, index, arr) => {
       const prev = arr[index - 1]
       const next = arr[index + 1]
 
       createPage({
         path: `/blog${post.node.fields.slug}`,
-        component: blogPost,
+        component: blogPostTemplate,
+        context: {
+          slug: post.node.fields.slug,
+          prev: prev,
+          next: next,
+        },
+      })
+    })
+
+    shopItems.forEach((post, index, arr) => {
+      const prev = arr[index - 1]
+      const next = arr[index + 1]
+
+      createPage({
+        path: `/shop${post.node.fields.slug}`,
+        component: shopItemTemplate,
         context: {
           slug: post.node.fields.slug,
           prev: prev,
@@ -55,11 +76,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
+    const slug = createFilePath({ node, getNode })
+    const collection = getNode(node.parent).sourceInstanceName
+
     createNodeField({
-      name: `slug`,
       node,
-      value,
+      name: "collection",
+      value: collection,
+    })
+
+    createNodeField({
+      node,
+      name: "slug",
+      value: slug,
     })
   }
 }

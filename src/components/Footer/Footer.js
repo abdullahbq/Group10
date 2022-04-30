@@ -1,5 +1,6 @@
-import React from "react";
-import Image from "../Images/Images";
+import React from "react"
+import Image from "../Images/Images"
+import { Link } from "gatsby"
 
 const Footer = () => {
   return (
@@ -18,31 +19,31 @@ const Footer = () => {
               height: "50px",
               width: "50px",
             }}
-            filename="bvlogo.jpg"
+            filename="bvlogo1.png"
             alt="1"
           />
         </a>
 
         <ul class="nav col-md-4 justify-content-end">
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-muted">
-              HOME
-            </a>
+            <Link class="nav-link p-0 px-2 text-white" to="/">
+              <b>HOME</b>
+            </Link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-muted">
-              ABOUT
-            </a>
+            <Link class="nav-link p-0 px-2 text-white" to="/about">
+              <b>ABOUT</b>
+            </Link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-2 text-muted">
-              CONTACT
-            </a>
+            <Link class="nav-link p-0 px-2 text-white" to="/contact">
+              <b>CONTACT</b>
+            </Link>
           </li>
         </ul>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -1,6 +1,4 @@
-npm install -global yarn
-npm install -global gatsby-cli
-yarn
-gatsby develop
+GROUP 10 PROJECT
+BANASTHALI VIDYAPITH
+BTECH EE BATCH 2023
 
-yarn add bootstrap @popperjs/core sass gatsby-plugin-sass
